@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { resize_square } from "wasm-image-processor";
 import { useFileSize } from "@/composables/useFileSize";
 import { useIsLoading } from "@/composables/useIsLoading";
+import { useCreateObjectUrl } from "@/composables/useCreateObjectURl";
 
 const previewUrl = ref<string | undefined>(undefined);
 const picture = ref<File | undefined>(undefined);
@@ -188,6 +189,14 @@ const onFileChange = (event: Event) => {
           </div>
           <div v-if="resizedImage" class="mt-2 text-sm text-gray-500">
             Size: {{ useFileSize(resizedImage) }}
+          </div>
+          <div>
+            <a
+              v-if="resizedImage"
+              download
+              :href="useCreateObjectUrl(resizedImage)"
+              >Download</a
+            >
           </div>
         </div>
       </div>
