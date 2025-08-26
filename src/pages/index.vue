@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { useFileSize } from "@/composables/useFileSize";
 import { useIsLoading } from "@/composables/useIsLoading";
 import { useCreateObjectUrl } from "@/composables/useCreateObjectUrl";
+import { resize_square } from "wasm-image-processor";
 
 const previewUrl = ref<string | undefined>(undefined);
 const picture = ref<File | undefined>(undefined);
