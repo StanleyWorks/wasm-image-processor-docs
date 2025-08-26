@@ -112,7 +112,7 @@ const onFileChange = (event: Event) => {
           <div class="flex items-center">
             <input
               id="side"
-              class="w-full border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              class="w-full border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary"
               v-model="side"
               min="1"
               placeholder="512"
@@ -124,7 +124,7 @@ const onFileChange = (event: Event) => {
 
         <button
           type="submit"
-          class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-4 rounded-lg font-medium transition disabled:bg-gray-300 disabled:cursor-not-allowed flex justify-center items-center"
+          class="w-full bg-primary hover:bg-primary text-white py-3 px-4 rounded-lg font-medium transition disabled:bg-gray-300 disabled:cursor-not-allowed flex justify-center items-center"
           :disabled="useIsLoading().value || !picture"
         >
           <svg

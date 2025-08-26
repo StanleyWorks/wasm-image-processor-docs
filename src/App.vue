@@ -13,11 +13,11 @@ const toggleMenu = () => {
   <div class="min-h-screen flex flex-col bg-gray-50">
     <!-- Navbar -->
     <nav
-      class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg"
+      class="bg-primary text-white shadow-lg"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-space-between h-16">
-          <div class="flex items-center">
+          <div class="flex justify-between">
             <div class="flex-shrink-0 flex items-center">
               <svg
                 class="h-8 w-8 mr-2"
