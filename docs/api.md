@@ -36,27 +36,23 @@ export default defineConfig({
 
 ---
 
-## `resize_square(input: Uint8Array, size: number) -> Uint8Array` ✅
+## Functions
 
-Resize an image to a square of the given size (width and height in pixels).
-Maintains aspect ratio by padding/cropping as necessary.
+### Ready & Demoed Functions
 
-### Parameters
-- `input` — Encoded image bytes (PNG or JPEG).
-- `size` — Desired square dimension in pixels (e.g. `256`).
+- `blur(input: Uint8Array, radius: number): Uint8Array` — Gaussian blur
+- `fast_blur(input: Uint8Array, sigma: number): Uint8Array` — Fast blur
+- `contrast(input: Uint8Array, value: number): Uint8Array` — Adjust contrast
+- `brighten(input: Uint8Array, value: number): Uint8Array` — Adjust brightness
+- `grayscale(input: Uint8Array): Uint8Array` — Convert to grayscale
+- `invert(input: Uint8Array): Uint8Array` — Invert colors
+- `hue_rotate(input: Uint8Array, degrees: number): Uint8Array` — Rotate hue
+- `crop(input: Uint8Array, x: number, y: number, width: number, height: number): Uint8Array` — Crop to region
+- `resize(input: Uint8Array, width: number, height: number): Uint8Array` — Resize to custom dimensions
+- `resize_square(input: Uint8Array, size: number): Uint8Array` — Resize to square
+- `thumbnail(input: Uint8Array, size: number): Uint8Array` — Generate thumbnail
 
-### Returns
-- `Uint8Array` — Encoded PNG bytes of the resized image.
-
-### Example
-
-```ts
-import { resize_square } from "wasm-image-processor"
-
-const resized = resize_square(uint8Array, 256)
-```
-
----
+See the sidebar for details, usage, and live demos of each function.
 
 ## Planned Functions 🚧
 

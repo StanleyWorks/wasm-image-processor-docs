@@ -2,8 +2,8 @@
 
 Apply Gaussian blur effects to an image for artistic or privacy purposes.
 
-::: warning Under Development
-This function is currently under development. Check back soon for updates!
+::: success
+**Ready & Demoed**
 :::
 
 ## Planned Signature

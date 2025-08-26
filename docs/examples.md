@@ -1,6 +1,16 @@
 # Examples
 
-Practical examples of using the WASM Image Processor in real-world scenarios.
+Practical examples of using the WASM Image Processor for:
+
+- Blur (Gaussian and fast)
+- Contrast
+- Brighten
+- Grayscale
+- Invert
+- Hue Rotate
+- Crop
+- Resize (custom and square)
+- Thumbnail generation
 
 ## PWA Icon Generator
 
@@ -38,6 +48,15 @@ async function generatePWAIcons(sourceFile) {
 const fileInput = document.querySelector('#iconSource')
 fileInput.addEventListener('change', async (e) => {
   const file = e.target.files[0]
+  // You can also use other functions:
+  // const cropped = crop(sourceBytes, 10, 10, 100, 100)
+  // const blurred = blur(sourceBytes, 2)
+  // const brightened = brighten(sourceBytes, 20)
+  // const contrasted = contrast(sourceBytes, 30)
+  // const grayscaled = grayscale(sourceBytes)
+  // const inverted = invert(sourceBytes)
+  // const hueRotated = hue_rotate(sourceBytes, 120)
+  // const thumb = thumbnail(sourceBytes, 128)
   if (!file) return
   
   const icons = await generatePWAIcons(file)

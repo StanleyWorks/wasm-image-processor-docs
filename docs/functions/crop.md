@@ -2,8 +2,8 @@
 
 Crop an image to a specific region.
 
-::: warning Under Development
-This function is currently under development. Check back soon for updates!
+::: success
+**Ready & Demoed**
 :::
 
 ## Planned Signature

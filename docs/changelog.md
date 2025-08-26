@@ -5,7 +5,27 @@ Track the development progress and feature releases of the WASM Image Processor.
 ## Version 0.4.0 (Current)
 
 ### Available Functions
-- ✅ `resize_square` - Resize images to square dimensions
+- ✅ `blur` - Gaussian blur
+- ✅ `fast_blur` - Fast blur
+- ✅ `contrast` - Adjust contrast
+- ✅ `brighten` - Adjust brightness
+- ✅ `grayscale` - Convert to grayscale
+- ✅ `invert` - Invert colors
+- ✅ `hue_rotate` - Rotate hue
+- ✅ `crop` - Crop to region
+- ✅ `resize` - Resize to custom dimensions
+- ✅ `resize_square` - Resize to square
+- ✅ `thumbnail` - Generate thumbnail
+- ✅ `resize` - Resize images to custom dimensions
+- ✅ `crop` - Crop images to a region
+- ✅ `blur` - Gaussian blur
+- ✅ `fast_blur` - Fast blur
+- ✅ `grayscale` - Convert to grayscale
+- ✅ `invert` - Invert colors
+- ✅ `brighten` - Adjust brightness
+- ✅ `contrast` - Adjust contrast
+- ✅ `hue_rotate` - Rotate hue
+- ✅ `thumbnail` - Generate thumbnails
 
 ### Under Development
 - 🚧 **Core Operations**: `resize`, `crop`, `thumbnail`, `rotate90/180/270`, `flip_horizontal/vertical`

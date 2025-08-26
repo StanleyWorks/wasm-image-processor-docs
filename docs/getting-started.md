@@ -1,6 +1,17 @@
 # Getting Started
 
-The **WASM Image Processor** lets you resize and transform images directly in the browser using WebAssembly. This page shows how to install the package and process images for download.
+The **WASM Image Processor** lets you:
+
+- Blur images (Gaussian and fast blur)
+- Adjust contrast and brightness
+- Convert to grayscale
+- Invert colors
+- Rotate hue
+- Crop to region
+- Resize (custom and square)
+- Generate thumbnails
+
+All features run 100% in your browser using WebAssembly and Rust. Explore the sidebar for live demos of each function.
 
 ## Installation
 

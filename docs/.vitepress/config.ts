@@ -27,15 +27,21 @@ export default defineConfig({
         text: "Core Functions",
         items: [
           { text: "resize_square ✅", link: "/functions/resize_square" },
-          { text: "resize 🚧", link: "/functions/resize" },
-          { text: "crop 🚧", link: "/functions/crop" },
+          { text: "resize ✅", link: "/functions/resize" },
+          { text: "crop ✅", link: "/functions/crop" },
+          { text: "thumbnail ✅", link: "/functions/thumbnail" },
         ],
       },
       {
         text: "Color & Filters",
         items: [
-          { text: "grayscale 🚧", link: "/functions/grayscale" },
-          { text: "blur 🚧", link: "/functions/blur" },
+          { text: "blur ✅", link: "/functions/blur" },
+          { text: "fast_blur ✅", link: "/functions/fast_blur" },
+          { text: "contrast ✅", link: "/functions/contrast" },
+          { text: "brighten ✅", link: "/functions/brighten" },
+          { text: "grayscale ✅", link: "/functions/grayscale" },
+          { text: "invert ✅", link: "/functions/invert" },
+          { text: "hue_rotate ✅", link: "/functions/hue_rotate" },
         ],
       },
       {
