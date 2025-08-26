@@ -1,28 +1,62 @@
-import { defineConfig } from 'vitepress'
+import { defineConfig } from "vitepress";
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "WASM Image processor",
-  description: "Process Images right in the browser.",
+  title: "WASM Image Processor",
+  description:
+    "Fast, offline image processing in the browser with WebAssembly.",
+  base: "/wasm-image-processor-docs/",
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: "Home", link: "/" },
+      { text: "Getting Started", link: "/getting-started" },
+      { text: "API", link: "/api" },
+      { text: "Examples", link: "/examples" },
+      { text: "Changelog", link: "/changelog" },
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: "Guide",
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
-      }
+          { text: "Getting Started", link: "/getting-started" },
+          { text: "API Overview", link: "/api" },
+          { text: "Examples", link: "/examples" },
+          { text: "Changelog", link: "/changelog" },
+        ],
+      },
+      {
+        text: "Core Functions",
+        items: [
+          { text: "resize_square ✅", link: "/functions/resize_square" },
+          { text: "resize 🚧", link: "/functions/resize" },
+          { text: "crop 🚧", link: "/functions/crop" },
+        ],
+      },
+      {
+        text: "Color & Filters",
+        items: [
+          { text: "grayscale 🚧", link: "/functions/grayscale" },
+          { text: "blur 🚧", link: "/functions/blur" },
+        ],
+      },
+      {
+        text: "Transformations",
+        items: [
+          { text: "rotate 🚧", link: "/functions/rotate" },
+        ],
+      },
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ]
-  }
-})
+      {
+        icon: "github",
+        link: "https://github.com/StanleyMasinde/wasm-image-processor",
+      },
+    ],
+
+    editLink: {
+      pattern: 'https://github.com/StanleyWorks/wasm-image-processor-docs/edit/main/docs/:path',
+      text: 'Edit this page on GitHub'
+    }
+  },
+});

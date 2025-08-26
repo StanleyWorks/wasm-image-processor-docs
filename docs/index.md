@@ -1,25 +1,25 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: home
 
 hero:
-  name: "WASM Image processor"
-  text: "Process Images right in the browser."
-  tagline: My great project tagline
+  name: "WASM Image Processor"
+  text: "Fast, offline image processing for the web."
+  tagline: "Resize and transform images at near-native speed using WebAssembly — no backend required."
   actions:
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      text: Get Started
+      link: /getting-started
     - theme: alt
-      text: API Examples
-      link: /api-examples
-
+      text: View Demo
+      link: https://wasm-ip-demo.vercel.app
+    - theme: alt
+      text: API Reference
+      link: /api
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Zero Dependencies
+    details: Runs entirely in the browser. No server round-trips, no heavy libraries.
+  - title: Native Performance
+    details: WebAssembly gives you speed close to Rust/C++ without leaving JavaScript.
+  - title: Privacy First
+    details: Images never leave the client. Perfect for offline and privacy-sensitive apps.
 ---
-
