@@ -4,7 +4,6 @@ export default defineConfig({
   title: "WASM Image Processor",
   description:
     "Fast, offline image processing in the browser with WebAssembly.",
-  base: "/wasm-image-processor-docs/",
   themeConfig: {
     nav: [
       { text: "Home", link: "/" },
