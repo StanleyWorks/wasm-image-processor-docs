@@ -60,10 +60,6 @@ const onFileChange = (event: Event) => {
 </script>
 <template>
   <div class="max-w-4xl mx-auto p-6">
-    <h1 class="text-3xl font-bold text-center mb-6 text-gray-800">
-      WebAssembly Image Resizer
-    </h1>
-
     <div class="bg-white shadow-lg rounded-lg p-6 mb-8">
       <form action="#" @submit.prevent="onSubmit">
         <div class="mb-5">
