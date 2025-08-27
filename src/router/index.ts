@@ -10,6 +10,7 @@ import BrightenDemo from "@/pages/demos/brighten.vue";
 import GrayscaleDemo from "@/pages/demos/grayscale.vue";
 import CropDemo from "@/pages/demos/crop.vue";
 import ResizeDemo from "@/pages/demos/resize.vue";
+import ResizeSquare from "@/pages/demos/resize_square.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,26 +39,30 @@ const router = createRouter({
       path: "/demos/thumbnail",
       component: ThumbnailDemo,
     },
-      {
-        path: "/demos/fast_blur",
-        component: FastBlurDemo,
-      },
-      {
-        path: "/demos/brighten",
-        component: BrightenDemo,
-      },
-      {
-        path: "/demos/grayscale",
-        component: GrayscaleDemo,
-      },
-      {
-        path: "/demos/crop",
-        component: CropDemo,
-      },
-      {
-        path: "/demos/resize",
-        component: ResizeDemo,
-      },
+    {
+      path: "/demos/fast_blur",
+      component: FastBlurDemo,
+    },
+    {
+      path: "/demos/brighten",
+      component: BrightenDemo,
+    },
+    {
+      path: "/demos/grayscale",
+      component: GrayscaleDemo,
+    },
+    {
+      path: "/demos/crop",
+      component: CropDemo,
+    },
+    {
+      path: "/demos/resize",
+      component: ResizeDemo,
+    },
+    {
+      path: "/demos/resize_square",
+      component: ResizeSquare,
+    },
   ],
 });
 
