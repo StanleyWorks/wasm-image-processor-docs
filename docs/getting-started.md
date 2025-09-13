@@ -8,8 +8,7 @@ The **WASM Image Processor** lets you:
 - Invert colors
 - Rotate hue
 - Crop to region
-- Resize (custom and square)
-- Generate thumbnails
+- Resize
 
 All features run 100% in your browser using WebAssembly and Rust. Explore the sidebar for live demos of each function.
 
