@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="720" viewBox="0 0 960 720">
+  <title>Color study: a green arch, orange sun, and blue steps</title>
+  <rect width="960" height="720" fill="#e9e4d5"/>
+  <path d="M0 530h960v190H0z" fill="#c8cdbd"/>
+  <circle cx="729" cy="183" r="105" fill="#d96a3d"/>
+  <path d="M172 570V271a173 173 0 0 1 346 0v299h-98V272a75 75 0 0 0-150 0v298z" fill="#315f4a"/>
+  <path d="M516 570v-80h90v-80h90v-80h90v240z" fill="#6c879b"/>
+  <path d="M100 570h756" stroke="#223e30" stroke-width="3"/>
+  <path d="M100 618h80m20 0h80m20 0h80m20 0h80m20 0h80m20 0h80m20 0h80m20 0h56" stroke="#64796a" stroke-width="2"/>
+</svg>

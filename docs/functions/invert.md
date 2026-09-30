@@ -1,9 +1,8 @@
-# invert
+# Invert
 
 Invert the colors of an image for artistic or utility purposes.
 
-::: success
-**Ready & Demoed**
+::: tip Ready & Demoed
 :::
 
 ## Signature
@@ -19,7 +18,7 @@ invert(input: Uint8Array) => Uint8Array
 - `Uint8Array` — Encoded PNG bytes of the inverted image
 
 ## Features
-- Simple color inversion
+- Simple colour inversion
 - Useful for dark mode, artistic effects, or analysis
 
 ## Example

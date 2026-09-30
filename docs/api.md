@@ -45,7 +45,7 @@ export default defineConfig({
 - `contrast(input: Uint8Array, value: number): Uint8Array` — Adjust contrast
 - `brighten(input: Uint8Array, value: number): Uint8Array` — Adjust brightness
 - `grayscale(input: Uint8Array): Uint8Array` — Convert to grayscale
-- `invert(input: Uint8Array): Uint8Array` — Invert colors
+- `invert(input: Uint8Array): Uint8Array` — Invert colours
 - `hue_rotate(input: Uint8Array, degrees: number): Uint8Array` — Rotate hue
 - `crop(input: Uint8Array, x: number, y: number, width: number, height: number): Uint8Array` — Crop to region
 - `resize(input: Uint8Array, width: number, height: number): Uint8Array` — Resize to custom dimensions

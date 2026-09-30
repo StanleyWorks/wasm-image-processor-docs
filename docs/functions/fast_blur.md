@@ -1,9 +1,8 @@
-# fast_blur
+# Fast Blur
 
 Apply a fast blur effect to an image for quick privacy or artistic purposes.
 
-::: success
-**Ready & Demoed**
+::: tip Ready & Demoed
 :::
 
 ## Signature
@@ -14,7 +13,7 @@ fast_blur(input: Uint8Array, sigma: number) => Uint8Array
 
 ## Parameters
 - **`input`** — Encoded image bytes (PNG or JPEG)
-- **`sigma`** — Blur strength (e.g. 1-10)
+- **`sigma`** — Blur strength (e.g. 1–10)
 
 ## Returns
 - `Uint8Array` — Encoded PNG bytes of the blurred image

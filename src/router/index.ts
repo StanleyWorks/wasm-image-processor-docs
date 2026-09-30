@@ -14,6 +14,7 @@ import ResizeSquare from "@/pages/demos/resize_square.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  scrollBehavior: () => ({ top: 0 }),
   routes: [
     {
       path: "/",

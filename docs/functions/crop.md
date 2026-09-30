@@ -1,9 +1,8 @@
-# crop
+# Crop
 
 Crop an image to a specific region.
 
-::: success
-**Ready & Demoed**
+::: tip Ready & Demoed
 :::
 
 ## Planned Signature

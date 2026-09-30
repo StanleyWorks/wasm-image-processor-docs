@@ -1,86 +1,71 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const sampleUrl = `${import.meta.env.BASE_URL}sample.svg`;
+</script>
+
 <template>
-  <div class="bg-white shadow-sm rounded-lg p-6 mb-8">
-    <div class="text-center mb-6">
-      <h2 class="text-2xl font-bold text-gray-800 mb-2">
-        WASM Image Processor Demo
-      </h2>
-      <p class="text-gray-600 max-w-2xl mx-auto">
-        This app demonstrates multiple image processing functions powered by
-        WebAssembly (WASM) and Rust. Select a function from the sidebar to try
-        out blur, contrast, hue rotate, invert, resize, crop, grayscale,
-        brighten, and more—all processed entirely in your browser.
-      </p>
-    </div>
-
-    <div
-      class="flex flex-col md:flex-row items-center justify-center gap-6 mt-6 text-center md:text-left"
-    >
-      <div class="flex items-center">
-        <div
-          class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3"
+  <div class="overview">
+    <section class="intro-grid">
+      <div class="intro-copy">
+        <h1 tabindex="-1">Your images.<br /><span>Your browser.</span></h1>
+        <p>
+          Resize, crop, and explore color with WebAssembly. Start with an image.
+          Make a change. Keep the result.
+        </p>
+        <RouterLink class="button primary" to="/demos/resize"
+          >Try resize <span aria-hidden="true">↗</span></RouterLink
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 text-green-600"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-        </div>
-        <span class="text-gray-700">Client-side processing</span>
+        <p class="intro-note">
+          No account. No server uploads. Just your image.
+        </p>
       </div>
-
-      <div class="flex items-center">
-        <div
-          class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 text-green-600"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-        </div>
-        <span class="text-gray-700">No server uploads</span>
+      <figure class="sample-figure">
+        <img
+          :src="sampleUrl"
+          width="960"
+          height="720"
+          alt="Sample image with a green arch, an orange sun, and blue steps"
+          fetchpriority="high"
+        />
+        <figcaption>
+          <span>A sample to experiment with</span
+          ><RouterLink to="/demos/grayscale">Try grayscale ↗</RouterLink>
+        </figcaption>
+      </figure>
+    </section>
+    <section class="tool-directory" aria-labelledby="tools-title">
+      <div class="directory-heading">
+        <h2 id="tools-title">What would you like to change?</h2>
+        <p>Pick an operation to open the workbench.</p>
       </div>
-
-      <div class="flex items-center">
-        <div
-          class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 text-green-600"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
+      <div class="tool-row">
+        <div>
+          <h3>Size & shape</h3>
+          <p>Fit a frame, make a thumbnail, or keep only the part you need.</p>
         </div>
-        <span class="text-gray-700">Near-native performance</span>
+        <div class="tool-links">
+          <RouterLink to="/demos/resize">Resize ↗</RouterLink
+          ><RouterLink to="/demos/crop">Crop ↗</RouterLink
+          ><RouterLink to="/demos/thumbnail">Thumbnail ↗</RouterLink
+          ><RouterLink to="/demos/resize_square">Resize square ↗</RouterLink>
+        </div>
       </div>
-    </div>
+      <div class="tool-row">
+        <div>
+          <h3>Color & detail</h3>
+          <p>
+            Soften edges, shift colors, or see your image in a different light.
+          </p>
+        </div>
+        <div class="tool-links">
+          <RouterLink to="/demos/blur">Blur ↗</RouterLink
+          ><RouterLink to="/demos/fast_blur">Fast blur ↗</RouterLink
+          ><RouterLink to="/demos/brighten">Brighten ↗</RouterLink
+          ><RouterLink to="/demos/contrast">Contrast ↗</RouterLink
+          ><RouterLink to="/demos/hue-rotate">Hue rotate ↗</RouterLink
+          ><RouterLink to="/demos/grayscale">Grayscale ↗</RouterLink
+          ><RouterLink to="/demos/invert">Invert ↗</RouterLink>
+        </div>
+      </div>
+    </section>
   </div>
 </template>

@@ -5,6 +5,11 @@ hero:
   name: "WASM Image Processor"
   text: "Fast, offline image processing for the web."
   tagline: "Resize and transform images at near-native speed using WebAssembly — no backend required."
+  image:
+    src: /sample.svg
+    alt: "A green arch, an orange sun, and blue steps: the demo’s sample image."
+    width: 480
+    height: 360
   actions:
     - theme: brand
       text: Get Started

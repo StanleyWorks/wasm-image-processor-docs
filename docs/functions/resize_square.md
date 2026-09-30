@@ -1,9 +1,8 @@
-# resize_square
+# Resize_Square
 
 Resize an image into a square of the given size (width and height in pixels).
 
-::: success
-**Ready & Demoed**
+::: tip Ready & Demoed
 :::
 
 ---

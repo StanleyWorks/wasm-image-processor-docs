@@ -1,410 +1,143 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { nextTick, ref, watch } from "vue";
+import { useRoute } from "vue-router";
+import { operations } from "@/data/operations";
 
-const currentYear = new Date().getFullYear();
+const route = useRoute();
 const isMenuOpen = ref(false);
-
-const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value;
-};
-
-const closeMenu = () => {
-  isMenuOpen.value = false;
-};
+const menuButton = ref<HTMLButtonElement>();
+const groups = ["Size & shape", "Color & detail"];
+watch(
+  () => route.path,
+  async () => {
+    isMenuOpen.value = false;
+    const operation = operations.find((item) => item.path === route.path);
+    document.title = `${operation?.title ?? "Image playground"} · WASM Image Processor`;
+    await nextTick();
+    document
+      .querySelector<HTMLElement>("main h1")
+      ?.focus({ preventScroll: true });
+  },
+);
+function escapeMenu() {
+  if (isMenuOpen.value) {
+    isMenuOpen.value = false;
+    menuButton.value?.focus();
+  }
+}
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col bg-gray-50">
-    <!-- Navbar -->
-    <nav class="bg-white text-gray-800 shadow border-b border-gray-200">
-      <div class="px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16">
-          <div class="flex-shrink-0 flex items-center">
-            <router-link to="/" class="flex items-center">
-              <svg
-                class="h-8 w-8 mr-2"
-                viewBox="0 0 512 512"
-                fill="currentColor"
-              >
-                <path
-                  d="M464 448H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h416c26.51 0 48 21.49 48 48v288c0 26.51-21.49 48-48 48zM112 120c-30.928 0-56 25.072-56 56s25.072 56 56 56 56-25.072 56-56-25.072-56-56-56zM64 384h384V272l-87.515-87.515c-4.686-4.686-12.284-4.686-16.971 0L208 320l-55.515-55.515c-4.686-4.686-12.284-4.686-16.971 0L64 336v48z"
-                />
-              </svg>
-              <span class="text-xl font-bold tracking-tight">WASM IP</span>
-            </router-link>
-          </div>
-          <!-- Desktop Navigation -->
-          <div class="hidden md:block">
-            <div class="ml-10 flex items-baseline space-x-4">
-              <router-link
-                to="/"
-                class="text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium transition"
-              >
-                Home
-              </router-link>
-              <a
-                href="https://github.com/StanleyMasinde/wasm-image-processor"
-                target="_blank"
-                class="text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium transition flex items-center"
-              >
-                <svg
-                  class="h-4 w-4 mr-1"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                  />
-                </svg>
-                GitHub
-              </a>
-              <a
-                href="https://webassembly.org/"
-                target="_blank"
-                class="text-gray-800 hover:bg-gray-200 px-3 py-2 rounded-md text-sm font-medium transition"
-              >
-                About WebAssembly
-              </a>
-            </div>
-          </div>
-
-          <div class="md:hidden">
-            <button
-              @click="toggleMenu"
-              class="inline-flex items-center justify-center p-2 rounded-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-            >
-              <span class="sr-only">Open main menu</span>
-              <svg
-                class="h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  v-if="!isMenuOpen"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-                <path
-                  v-else
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        <div
-          :class="{ block: isMenuOpen, hidden: !isMenuOpen }"
-          class="md:hidden"
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="app-shell" @keydown.esc="escapeMenu">
+    <header class="site-header">
+      <RouterLink class="brand" to="/" aria-label="WASM Image Processor home">
+        <svg
+          class="brand-mark"
+          width="32"
+          height="32"
+          viewBox="0 0 32 32"
+          fill="none"
+          aria-hidden="true"
         >
-          <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <router-link
-              to="/"
-              class="block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-500 transition"
-              @click="closeMenu"
-            >
-              Home
-            </router-link>
-            <a
-              href="https://github.com/StanleyMasinde/wasm-image-processor"
-              target="_blank"
-              class="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-blue-500 transition"
-              @click="closeMenu"
-            >
-              <svg class="h-5 w-5 mr-1" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                />
-              </svg>
-              GitHub
-            </a>
-            <a
-              href="https://webassembly.org/"
-              target="_blank"
-              class="block px-3 py-2 rounded-md text-base font-medium hover:bg-blue-500 transition"
-              @click="closeMenu"
-              >About WebAssembly</a
-            >
-            <div class="border-t border-gray-300 my-2"></div>
-            <h3
-              class="px-3 py-2 text-sm font-semibold text-gray-600 uppercase tracking-wider"
-            >
-              Demos
-            </h3>
-            <router-link
-              to="/demos/blur"
-              class="block px-3 py-2 rounded-md textBase font-medium hover:bg-blue-500 transition"
-              @click="closeMenu"
-              >Blur</router-link
-            >
-            <router-link
-              to="/demos/brighten"
-              class="block px-3 py-2 rounded-md textBase font-medium hover:bg-blue-500 transition"
-              @click="closeMenu"
-              >Brighten</router-link
-            >
-            <router-link
-              to="/demos/contrast"
-              class="block px-3 py-2 rounded-md textBase font-medium hover:bg-blue-500 transition"
-              @click="closeMenu"
-              >Contrast</router-link
-            >
-            <router-link
-              to="/demos/crop"
-              class="block px-3 py-2 rounded-md textBase font-medium hover:bg-blue-500 transition"
-              @click="closeMenu"
-              >Crop</router-link
-            >
-            <router-link
-              to="/demos/fast_blur"
-              class="block px-3 py-2 rounded-md textBase font-medium hover:bg-blue-500 transition"
-              @click="closeMenu"
-              >Fast Blur</router-link
-            >
-            <router-link
-              to="/demos/grayscale"
-              class="block px-3 py-2 rounded-md textBase font-medium hover:bg-blue-500 transition"
-              @click="closeMenu"
-              >Grayscale</router-link
-            >
-            <router-link
-              to="/demos/hue-rotate"
-              class="block px-3 py-2 rounded-md textBase font-medium hover:bg-blue-500 transition"
-              @click="closeMenu"
-              >Hue Rotate</router-link
-            >
-            <router-link
-              to="/demos/invert"
-              class="block px-3 py-2 rounded-md textBase font-medium hover:bg-blue-500 transition"
-              @click="closeMenu"
-              >Invert</router-link
-            >
-            <router-link
-              to="/demos/resize"
-              class="block px-3 py-2 rounded-md textBase font-medium hover:bg-blue-500 transition"
-              @click="closeMenu"
-              >Resize</router-link
-            >
-            <router-link
-              to="/demos/resize_square"
-              class="block px-3 py-2 rounded-md textBase font-medium hover:bg-blue-500 transition"
-              @click="closeMenu"
-              >Resize Square</router-link
-            >
-            <router-link
-              to="/demos/thumbnail"
-              class="block px-3 py-2 rounded-md textBase font-medium hover:bg-blue-500 transition"
-              @click="closeMenu"
-              >Thumbnail</router-link
+          <rect
+            x="3"
+            y="3"
+            width="26"
+            height="26"
+            rx="5"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+          <circle cx="11" cy="11" r="3" fill="currentColor" />
+          <path
+            d="m5 25 8-9 5 5 5-7 5 7"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+        </svg>
+        <span>WASM<span class="brand-detail"> Image Processor</span></span>
+      </RouterLink>
+      <div class="header-actions">
+        <span class="local-status"
+          ><span aria-hidden="true"></span>Runs in your browser</span
+        >
+        <a
+          class="header-link"
+          href="https://github.com/StanleyMasinde/wasm-image-processor"
+          target="_blank"
+          rel="noopener noreferrer"
+          >GitHub <span aria-hidden="true">↗</span></a
+        >
+        <button
+          ref="menuButton"
+          class="button secondary menu-toggle"
+          type="button"
+          :aria-expanded="isMenuOpen"
+          aria-controls="operation-nav"
+          @click="isMenuOpen = !isMenuOpen"
+        >
+          {{ isMenuOpen ? "Close" : "Tools" }}
+        </button>
+      </div>
+    </header>
+    <div class="app-body">
+      <aside
+        id="operation-nav"
+        class="sidebar"
+        :class="{ 'is-open': isMenuOpen }"
+      >
+        <nav aria-label="Image operations">
+          <RouterLink
+            class="nav-link overview-link"
+            to="/"
+            exact-active-class="is-current"
+            ><span>Overview</span><span aria-hidden="true">↗</span></RouterLink
+          >
+          <div v-for="group in groups" :key="group" class="nav-group">
+            <h2>{{ group }}</h2>
+            <RouterLink
+              v-for="item in operations.filter((item) => item.group === group)"
+              :key="item.key"
+              class="nav-link"
+              active-class="is-current"
+              :to="item.path"
+              ><span>{{ item.title }}</span
+              ><span class="nav-arrow" aria-hidden="true">↗</span></RouterLink
             >
           </div>
-        </div>
-      </div>
-    </nav>
-
-    <div class="flex flex-1">
-      <!-- Sidebar -->
-      <aside
-        class="w-64 bg-white text-gray-800 border-r border-gray-200 flex-shrink-0 min-h-screen hidden md:block"
-      >
-        <div class="p-6">
-          <h2 class="text-xl font-bold mb-6">Demos</h2>
-          <nav>
-            <ul class="space-y-2">
-              <li>
-                <router-link
-                  to="/demos/blur"
-                  class="block px-4 py-2 rounded hover:bg-primary hover:text-white transition"
-                  >Blur</router-link
-                >
-              </li>
-              <li>
-                <router-link
-                  to="/demos/contrast"
-                  class="block px-4 py-2 rounded hover:bg-primary hover:text-white transition"
-                  >Contrast</router-link
-                >
-              </li>
-              <li>
-                <router-link
-                  to="/demos/hue-rotate"
-                  class="block px-4 py-2 rounded hover:bg-primary hover:text-white transition"
-                  >Hue Rotate</router-link
-                >
-              </li>
-              <li>
-                <router-link
-                  to="/demos/invert"
-                  class="block px-4 py-2 rounded hover:bg-primary hover:text-white transition"
-                  >Invert</router-link
-                >
-              </li>
-              <li>
-                <router-link
-                  to="/demos/resize_square"
-                  class="block px-4 py-2 rounded hover:bg-primary hover:text-white transition"
-                  >Resize Square</router-link
-                >
-              </li>
-              <li>
-                <router-link
-                  to="/demos/thumbnail"
-                  class="block px-4 py-2 rounded hover:bg-primary hover:text-white transition"
-                  >Thumbnail</router-link
-                >
-              </li>
-              <li>
-                <router-link
-                  to="/demos/fast_blur"
-                  class="block px-4 py-2 rounded hover:bg-primary hover:text-white transition"
-                  >Fast Blur</router-link
-                >
-              </li>
-              <li>
-                <router-link
-                  to="/demos/brighten"
-                  class="block px-4 py-2 rounded hover:bg-primary hover:text-white transition"
-                  >Brighten</router-link
-                >
-              </li>
-              <li>
-                <router-link
-                  to="/demos/grayscale"
-                  class="block px-4 py-2 rounded hover:bg-primary hover:text-white transition"
-                  >Grayscale</router-link
-                >
-              </li>
-              <li>
-                <router-link
-                  to="/demos/crop"
-                  class="block px-4 py-2 rounded hover:bg-primary hover:text-white transition"
-                  >Crop</router-link
-                >
-              </li>
-              <li>
-                <router-link
-                  to="/demos/resize"
-                  class="block px-4 py-2 rounded hover:bg-primary hover:text-white transition"
-                  >Resize</router-link
-                >
-              </li>
-            </ul>
-          </nav>
+        </nav>
+        <div class="sidebar-note">
+          <p>Local by design.</p>
+          <span
+            >Images are processed on your device. No upload to a server.</span
+          >
         </div>
       </aside>
-
-      <!-- Main Content -->
-      <div class="flex-1 flex flex-col">
-        <div class="flex-grow container mx-auto px-4 py-8">
-          <RouterView />
-
-          <div class="mt-10 text-center">
+      <div class="content-column">
+        <main id="main-content" tabindex="-1"><RouterView /></main>
+        <footer class="site-footer">
+          <span>WASM Image Processor</span>
+          <div>
             <a
-              href="https://github.com/StanleyMasinde/wasm-image-processor"
-              class="inline-flex items-center px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-md transition-colors"
+              href="https://github.com/StanleyMasinde/wasm-image-processor#readme"
               target="_blank"
-            >
-              <svg class="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                <path
-                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                />
-              </svg>
-              View Documentation on GitHub
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Footer moved outside flex container -->
-    <footer class="bg-white text-gray-600 border-t border-gray-200">
-      <div class="px-4 sm:px-6 lg:px-8 py-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div>
-            <h3 class="text-lg font-bold mb-4 flex items-center">
-              <svg
-                class="h-6 w-6 mr-2"
-                viewBox="0 0 512 512"
-                fill="currentColor"
-              >
-                <path
-                  d="M464 448H48c-26.51 0-48-21.49-48-48V112c0-26.51 21.49-48 48-48h416c26.51 0 48 21.49 48 48v288c0 26.51-21.49 48-48 48zM112 120c-30.928 0-56 25.072-56 56s25.072 56 56 56 56-25.072 56-56-25.072-56-56-56zM64 384h384V272l-87.515-87.515c-4.686-4.686-12.284-4.686-16.971 0L208 320l-55.515-55.515c-4.686-4.686-12.284-4.686-16.971 0L64 336v48z"
-                />
-              </svg>
-              About This Demo
-            </h3>
-            <p class="text-gray-500">
-              This demonstration showcases the WebAssembly-powered image
-              resizing capabilities from the WASM Image Processor library. It's
-              a simple example of how WebAssembly can be used for efficient
-              client-side image operations.
-            </p>
-            <div class="mt-4">
-              <a
-                href="https://github.com/StanleyMasinde/wasm-image-processor"
-                target="_blank"
-                class="inline-flex items-center px-4 py-2 bg-primary text-white hover:bg-secondary transition-colors rounded-md"
-              >
-                <svg
-                  class="h-4 w-4 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                  />
-                </svg>
-                Visit GitHub Repository
-              </a>
-            </div>
-          </div>
-          <div>
-            <h3 class="text-lg font-bold mb-4">Tech Stack</h3>
-            <ul class="space-y-3">
-              <li class="text-gray-500 flex items-center">
-                <span>Rust + WebAssembly</span>
-              </li>
-              <li class="text-gray-500 flex items-center">
-                <span>Vue.js</span>
-              </li>
-              <li class="text-gray-500 flex items-center">
-                <span>JavaScript</span>
-              </li>
-              <li class="text-gray-500 flex items-center">
-                <span>Tailwind CSS</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div
-          class="mt-8 border-t border-gray-200 pt-6 flex flex-col sm:flex-row justify-between items-center"
-        >
-          <p class="text-sm text-gray-400">
-            &copy; {{ currentYear }} WASM Image Processor Demo. MIT License.
-          </p>
-          <div class="mt-4 sm:mt-0 flex space-x-6">
-            <a
+              rel="noopener noreferrer"
+              >Documentation ↗</a
+            ><a
               href="https://github.com/StanleyMasinde/wasm-image-processor/blob/main/LICENSE"
               target="_blank"
-              class="text-sm text-gray-400 hover:text-primary transition"
-              >License</a
-            >
-            <a
-              href="https://github.com/StanleyMasinde/wasm-image-processor#contributing"
+              rel="noopener noreferrer"
+              >MIT license</a
+            ><a
+              href="https://webassembly.org/"
               target="_blank"
-              class="text-sm text-gray-400 hover:text-primary transition"
-              >Contribute</a
+              rel="noopener noreferrer"
+              >WebAssembly ↗</a
             >
           </div>
-        </div>
+        </footer>
       </div>
-    </footer>
+    </div>
   </div>
 </template>

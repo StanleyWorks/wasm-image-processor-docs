@@ -1,9 +1,8 @@
-# blur
+# Blur
 
 Apply Gaussian blur effects to an image for artistic or privacy purposes.
 
-::: success
-**Ready & Demoed**
+::: tip Ready & Demoed
 :::
 
 ## Planned Signature

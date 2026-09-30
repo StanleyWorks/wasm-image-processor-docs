@@ -1,9 +1,8 @@
-# contrast
+# Contrast
 
 Adjust the contrast of an image for better clarity or artistic effect.
 
-::: success
-**Ready & Demoed**
+::: tip Ready & Demoed
 :::
 
 ## Signature

@@ -1,9 +1,8 @@
-# thumbnail
+# Thumbnail
 
 Generate a small thumbnail from an image for previews or galleries.
 
-::: success
-**Ready & Demoed**
+::: tip Ready & Demoed
 :::
 
 ## Signature

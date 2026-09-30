@@ -1,9 +1,8 @@
-# grayscale
+# Grayscale
 
 Convert an image to grayscale.
 
-::: success
-**Ready & Demoed**
+::: tip Ready & Demoed
 :::
 
 ## Planned Signature

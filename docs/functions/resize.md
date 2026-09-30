@@ -1,9 +1,8 @@
-# resize
+# Resize
 
 Resize an image to custom width and height dimensions.
 
-::: success
-**Ready & Demoed**
+::: tip Ready & Demoed
 :::
 
 ## Planned Signature

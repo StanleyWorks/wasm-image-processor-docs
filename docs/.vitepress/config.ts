@@ -4,6 +4,7 @@ export default defineConfig({
   title: "WASM Image Processor",
   description:
     "Fast, offline image processing in the browser with WebAssembly.",
+  vite: { publicDir: "../public" },
   themeConfig: {
     nav: [
       { text: "Home", link: "/" },
@@ -26,28 +27,28 @@ export default defineConfig({
       {
         text: "Core Functions",
         items: [
-          { text: "resize_square ✅", link: "/functions/resize_square" },
-          { text: "resize ✅", link: "/functions/resize" },
-          { text: "crop ✅", link: "/functions/crop" },
-          { text: "thumbnail ✅", link: "/functions/thumbnail" },
+          { text: "resize_square", link: "/functions/resize_square" },
+          { text: "resize", link: "/functions/resize" },
+          { text: "crop", link: "/functions/crop" },
+          { text: "thumbnail", link: "/functions/thumbnail" },
         ],
       },
       {
         text: "Color & Filters",
         items: [
-          { text: "blur ✅", link: "/functions/blur" },
-          { text: "fast_blur ✅", link: "/functions/fast_blur" },
-          { text: "contrast ✅", link: "/functions/contrast" },
-          { text: "brighten ✅", link: "/functions/brighten" },
-          { text: "grayscale ✅", link: "/functions/grayscale" },
-          { text: "invert ✅", link: "/functions/invert" },
-          { text: "hue_rotate ✅", link: "/functions/hue_rotate" },
+          { text: "blur", link: "/functions/blur" },
+          { text: "fast_blur", link: "/functions/fast_blur" },
+          { text: "contrast", link: "/functions/contrast" },
+          { text: "brighten", link: "/functions/brighten" },
+          { text: "grayscale", link: "/functions/grayscale" },
+          { text: "invert", link: "/functions/invert" },
+          { text: "hue_rotate", link: "/functions/hue_rotate" },
         ],
       },
       {
         text: "Transformations",
         items: [
-          { text: "rotate 🚧", link: "/functions/rotate" },
+          { text: "rotate (planned)", link: "/functions/rotate" },
         ],
       },
     ],

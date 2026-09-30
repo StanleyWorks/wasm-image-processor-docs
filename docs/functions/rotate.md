@@ -1,4 +1,4 @@
-# rotate
+# Rotate
 
 Rotate an image by a specified number of degrees.
 

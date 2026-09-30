@@ -1,9 +1,8 @@
-# brighten
+# Brighten
 
 Increase or decrease the brightness of an image.
 
-::: success
-**Ready & Demoed**
+::: tip Ready & Demoed
 :::
 
 ## Signature
